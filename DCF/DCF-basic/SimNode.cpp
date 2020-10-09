@@ -26,12 +26,13 @@ SimNode::SimNode() {
 	CW           	= CWmin;
 	CW_COUNTER      = 0;
 
-	SLOT            = 20;
+    SLOT            = 20;
 	SIFS         	= 10;
 	DIFS         	= SIFS + 2*SLOT;
+    PHY_TIME        = 20;
 	TRANS   	    = 0;
 
-	RATE            = 11;
+	RATE            = MRate;
 
     PACKET_COUNTER  = 0;
     DROP_COUNTER    = 0;
@@ -75,7 +76,7 @@ void SimNode::run(int clock_in,int flag_channel){
 					}
 					else if(CW_COUNTER > 0){
 						if(Halt_flag == Halt){
-							set_alarm(DIFS);
+							set_alarm(10);
 							Halt_flag = Not_Halt;
 						}
 						else if(Halt_flag == Not_Halt){
@@ -85,7 +86,7 @@ void SimNode::run(int clock_in,int flag_channel){
 					}
 					break;
 				case SEND_STATE:
-					TRANS = (PHY + MAC + PAYLOAD + ACK) / RATE + SIFS;
+					TRANS = DIFS + 2 * PHY_TIME + (MAC + PAYLOAD + ACK) / RATE + SIFS;
 					set_alarm(TRANS);
 					WORK_MODE = RECEIVE_STATE;
 					break;
@@ -99,7 +100,7 @@ void SimNode::run(int clock_in,int flag_channel){
 					WORK_MODE      = IDLE_STATE;
 					break;
 				case COLLISION_STATE:
-					TRANS = (PHY + MAC + PAYLOAD + ACK) / RATE + SIFS;
+					TRANS = DIFS + 2 * PHY_TIME + (MAC + PAYLOAD + ACK) / RATE + SIFS;
 					set_alarm(TRANS);
 					WORK_MODE = ACKTIMEOUT_STATE;
 					break;

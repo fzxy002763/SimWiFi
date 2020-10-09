@@ -4,7 +4,7 @@ OBJS =		SimMain.o SimNode.o
 
 LIBS =
 
-TARGET =	.\CA.exe
+TARGET =	.\DCF-RTSCTS.exe
 
 $(TARGET):	$(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)

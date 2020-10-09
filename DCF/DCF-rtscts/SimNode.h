@@ -26,8 +26,12 @@ using namespace std;
 
 #define PHY                     (208)
 #define MAC                     (224)
-#define PAYLOAD                 (1500*8)
-#define ACK                     (PHY+112)
+#define ACK                     (112)
+#define RTS                     (160)
+#define CTS                     (112)
+
+#define PAYLOAD (1500*8)
+#define MRate (54)
 
 #define ulRAND_MAX               4294967295
 
@@ -50,6 +54,7 @@ class SimNode {
 		uint   SLOT;
 		uint   SIFS;
 		uint   DIFS;
+		uint   PHY_TIME;
 		uint   TRANS;
 
 		uint   PACKET_COUNTER;

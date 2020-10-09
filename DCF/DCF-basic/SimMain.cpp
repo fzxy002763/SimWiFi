@@ -17,7 +17,7 @@ int main(int argc, char ** argv)
 	const int    allNum    = atoi(argv[1]);
 	const double Pd        = atof(argv[2]);
 	const double Per       = atof(argv[3]);
-	const ulong  sim_time  = 1e7;
+	const ulong  sim_time  = 1e6;
 
 	printf("%.9lf ",sim_main(allNum,Pd,Per,sim_time));
 

@@ -1,2 +1,2 @@
 # SimWiFi
-A simple pure Wi-Fi MAC Layer Simulator.
+The one-cell simulation of Wi-Fi network.
